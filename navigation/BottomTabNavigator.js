@@ -3,7 +3,8 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import LinksScreen from '../screens/mapViewer';
+import MapTester from '../screens/mapTester';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -20,18 +21,26 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: "Demander de l'aide",
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-hand" />,
         }}
       />
       <BottomTab.Screen
         name="Links"
         component={LinksScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Carte des SOS',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-map" />,
         }}
-      />
+      /> 
+       <BottomTab.Screen
+      name="Tester"
+      component={MapTester}
+      options={{
+        title: 'Carte de test',
+        tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-map" />,
+      }}
+    />
     </BottomTab.Navigator>
   );
 }
@@ -41,8 +50,10 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
+      return 'Projet n°8';
     case 'Links':
-      return 'Links to learn more';
+      return 'Map des environs';
+    case 'Tester':
+      return 'Map des environs en géoloc';
   }
 }
